@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <inttypes.h>
 
+// copy-paste
 typedef unsigned long int  u4;
 typedef struct ranctx { u4 a; u4 b; u4 c; u4 d; } ranctx;
 
@@ -22,6 +23,7 @@ void raninit( ranctx *x, u4 seed ) {
         (void)ranval(x);
     }
 }
+// ^^^ from site
 
 int main(void) {
     ranctx ctx;
