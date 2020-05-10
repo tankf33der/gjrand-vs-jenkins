@@ -24,6 +24,10 @@ void raninit( ranctx *x, u4 seed ) {
 
 int main(void) {
     ranctx ctx;
+    raninit(&ctx, 984984758944451);
+    for(size_t i = 0; i < 10; i++) {
+        printf("%lu\n", ranval(&ctx));
+    }
 
     return 0;
 
