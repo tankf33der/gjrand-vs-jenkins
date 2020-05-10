@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <inttypes.h>
 
 typedef unsigned long int  u4;
 typedef struct ranctx { u4 a; u4 b; u4 c; u4 d; } ranctx;
@@ -24,11 +25,16 @@ void raninit( ranctx *x, u4 seed ) {
 
 int main(void) {
     ranctx ctx;
-    raninit(&ctx, 984984758944451);
-    for(size_t i = 0; i < 10; i++) {
-        printf("%lu\n", ranval(&ctx));
-    }
+    uint32_t buf[2048];
 
+    raninit(&ctx, 984984758944451);
+    while (1) {
+        for(size_t i = 0; i < 2048; i++) {
+        //for(size_t i = 2047; i <= 0; i--) {
+            buf[i] = ranval(&ctx);
+        }
+        if(fwrite(buf, 4, 2048, stdout)!=2048) break;
+    }
     return 0;
 
 }
